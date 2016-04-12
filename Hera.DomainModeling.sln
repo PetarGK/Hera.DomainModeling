@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hera.DomainModeling", "Hera.DomainModeling\Hera.DomainModeling.csproj", "{BF25F3D5-2222-442C-8C2A-7E67DAA3ACD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hera.DomainModeling.Tests", "Hera.DomainModeling.Tests\Hera.DomainModeling.Tests.csproj", "{393EC3A8-279F-43D8-8F2E-35BD961CCB0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BF25F3D5-2222-442C-8C2A-7E67DAA3ACD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF25F3D5-2222-442C-8C2A-7E67DAA3ACD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF25F3D5-2222-442C-8C2A-7E67DAA3ACD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393EC3A8-279F-43D8-8F2E-35BD961CCB0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393EC3A8-279F-43D8-8F2E-35BD961CCB0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393EC3A8-279F-43D8-8F2E-35BD961CCB0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393EC3A8-279F-43D8-8F2E-35BD961CCB0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

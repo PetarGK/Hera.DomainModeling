@@ -1,4 +1,5 @@
 ﻿using Hera.DomainModeling.AggregareRoot;
+using Hera.DomainModeling.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,21 @@ using System.Threading.Tasks;
 
 namespace Hera.DomainModeling.Entity
 {
-    public abstract class Entity<TAggregateRoot, TEntityState> : IEntity 
-        where TAggregateRoot: IAggregateRoot
-        where TEntityState : EntityState, new()
+    public abstract class Entity<TEntityState> : IEntity 
+        where TEntityState : IEntityState, new()
     {
         #region Fields
 
-        private TAggregateRoot _root;
+        private IAggregateRoot _root;
         private TEntityState _state;
 
         #endregion
 
         #region Properties
 
-        public TEntityState State
+        protected TEntityState State
         {
             get { return _state; }
-        }
-        public TAggregateRoot Root
-        {
-            get { return _root; }
         }
         IEntityState IHaveState<IEntityState>.State
         {
@@ -41,7 +37,7 @@ namespace Hera.DomainModeling.Entity
 
         #region Constructors
 
-        protected Entity(TAggregateRoot root, Guid id)
+        protected Entity(IAggregateRoot root, IIdentity id)
         {
             _root = root;
 
@@ -59,7 +55,7 @@ namespace Hera.DomainModeling.Entity
         {
             var entityEvent = new EntityEvent(_state.Id, @event);
             var ar = (dynamic)_root;
-            ar.Apply((dynamic)entityEvent);
+            ar.Apply(entityEvent);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hera.DomainModeling.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,13 @@ namespace Hera.DomainModeling.Entity
     public class EntityEvent
     {
         private EntityEvent() { }
-        public EntityEvent(Guid id, IEvent @event)
+        public EntityEvent(IIdentity id, IEvent @event)
         {
             EntityId = id;
             Event = @event;
         }
 
-        public Guid EntityId { get; private set; }
+        public IIdentity EntityId { get; private set; }
         public IEvent Event { get; private set; }
     }
 }

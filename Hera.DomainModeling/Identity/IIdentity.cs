@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hera.DomainModeling
+namespace Hera.DomainModeling.Identity
 {
-    public interface IHaveId<TId>
+    public interface IIdentity
     {
-        TId Id { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hera.DomainModeling.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace Hera.DomainModeling.AggregareRoot
 {
-    public abstract class AggregateRootState : IAggregateRootState
+    public abstract class AggregateRootState<TId> : IAggregateRootState 
+        where TId : IIdentity
     {
-        public Guid Id { get; set; }
+        public TId Id { get; set; }
+        IIdentity IHaveId<IIdentity>.Id
+        {
+            get { return Id; }
+            set { Id = (TId)value; }
+        }
     }
 }

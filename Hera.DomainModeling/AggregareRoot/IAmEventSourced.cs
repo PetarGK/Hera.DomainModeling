@@ -1,4 +1,5 @@
 ﻿using Hera.DomainModeling.Entity;
+using Hera.DomainModeling.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace Hera.DomainModeling.AggregareRoot
         void ReplayEvents(List<IEvent> events, int currentRevision);
         IEnumerable<IEvent> UncommittedEvents { get; }
         int Revision { get; }
-        void RegisterEntity(Guid entityId, IEntity entity);
+        void RegisterEntity(IIdentity entityId, IEntity entity);
     }
 }

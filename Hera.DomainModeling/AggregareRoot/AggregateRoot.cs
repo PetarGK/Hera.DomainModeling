@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ReflectionMagic;
 using Hera.DomainModeling.Entity;
+using Hera.DomainModeling.Identity;
 
 namespace Hera.DomainModeling.AggregareRoot
 {
-    public abstract class AggregateRoot<TState> : IAggregateRoot
-        where TState : IAggregateRootState, new()
+    public abstract class AggregateRoot<TAggregateRootState> : IAggregateRoot
+        where TAggregateRootState : IAggregateRootState, new()
     {
         #region Fields
 
         private int _revision;
-        private TState _state;
+        private TAggregateRootState _state;
         private List<IEvent> _uncommittedEvents;
-        private Dictionary<Guid, IEntity> _entities;
+        private Dictionary<IIdentity, IEntity> _entities;
 
         #endregion
 
@@ -25,7 +25,7 @@ namespace Hera.DomainModeling.AggregareRoot
         protected AggregateRoot()
         {
             _revision = 0;
-            _state = new TState();
+            _state = new TAggregateRootState();
             _uncommittedEvents = new List<IEvent>();
         }
 
@@ -33,7 +33,7 @@ namespace Hera.DomainModeling.AggregareRoot
 
         #region Properties
 
-        public TState State
+        protected TAggregateRootState State
         {
             get { return _state; }
         }
@@ -67,7 +67,7 @@ namespace Hera.DomainModeling.AggregareRoot
                 Mutate(@event);
             }
         }
-        void IAmEventSourced.RegisterEntity(Guid entityId, IEntity entity)
+        void IAmEventSourced.RegisterEntity(IIdentity entityId, IEntity entity)
         {
             _entities.Add(entityId, entity);
         }
@@ -81,11 +81,11 @@ namespace Hera.DomainModeling.AggregareRoot
         }
         private void MutateAggregate(IEvent @event)
         {
-            this.AsDynamic().When((dynamic)@event);
+            ((dynamic)State).When(@event);
         }
         private void MutateEntity(IEntity entity, IEvent @event)
         {
-            entity.AsDynamic().When((dynamic)@event);
+            ((dynamic)entity.State).When(@event);
         }
 
         #endregion
