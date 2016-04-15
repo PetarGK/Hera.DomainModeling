@@ -50,7 +50,6 @@
     <Compile Include="Entity\EntityState.cs" />
     <Compile Include="Entity\IEntity.cs" />
     <Compile Include="Entity\IEntityState.cs" />
-    <Compile Include="FastActivator.cs" />
     <Compile Include="Identity\GuidIdentity.cs" />
     <Compile Include="Identity\IIdentity.cs" />
     <Compile Include="Identity\IntIdentity.cs" />
