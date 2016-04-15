@@ -11,10 +11,13 @@ namespace Hera.DomainModeling.AggregareRoot
         where TId : IIdentity
     {
         public TId Id { get; set; }
+        public IAggregateRoot Root { get; set; }
+
         IIdentity IHaveId<IIdentity>.Id
         {
             get { return Id; }
             set { Id = (TId)value; }
         }
+
     }
 }

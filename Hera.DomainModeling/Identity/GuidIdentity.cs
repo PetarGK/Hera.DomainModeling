@@ -7,19 +7,34 @@ using System.Threading.Tasks;
 
 namespace Hera.DomainModeling.Identity
 {
-    public abstract class GuidIdentity : IIdentity, IEqualityComparer<Guid>, IEquatable<Guid>
+    public abstract class GuidIdentity : IIdentity, IEqualityComparer<GuidIdentity>, IEquatable<GuidIdentity>
     {
-        bool IEquatable<Guid>.Equals(Guid other)
+        private Guid _id;
+
+        public GuidIdentity(Guid id)
         {
-            throw new NotImplementedException();
+            _id = id;
         }
-        bool IEqualityComparer<Guid>.Equals(Guid x, Guid y)
+
+        public override bool Equals(object obj)
         {
-            throw new NotImplementedException();
+            return _id.Equals(((GuidIdentity)obj)._id);
         }
-        int IEqualityComparer<Guid>.GetHashCode(Guid obj)
+        bool IEquatable<GuidIdentity>.Equals(GuidIdentity other)
         {
-            throw new NotImplementedException();
+            return _id.Equals(other._id);
+        }
+        bool IEqualityComparer<GuidIdentity>.Equals(GuidIdentity x, GuidIdentity y)
+        {
+            return x._id.Equals(y._id);
+        }
+        int IEqualityComparer<GuidIdentity>.GetHashCode(GuidIdentity obj)
+        {
+            return obj.GetHashCode();
+        }
+        public override int GetHashCode()
+        {
+            return _id.GetHashCode();
         }
     }
 }

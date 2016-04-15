@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hera.DomainModeling.Tests.Model.Events
 {
-    public class OrderCreated
+    public class OrderCreated : IEvent
     {
         public OrderCreated(OrderId id, DateTime creationDate)
         {

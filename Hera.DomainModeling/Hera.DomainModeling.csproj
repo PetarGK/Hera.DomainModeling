@@ -50,13 +50,14 @@
     <Compile Include="Entity\EntityState.cs" />
     <Compile Include="Entity\IEntity.cs" />
     <Compile Include="Entity\IEntityState.cs" />
-    <Compile Include="Entity\IHaveRoot.cs" />
+    <Compile Include="FastActivator.cs" />
     <Compile Include="Identity\GuidIdentity.cs" />
     <Compile Include="Identity\IIdentity.cs" />
     <Compile Include="Identity\IntIdentity.cs" />
     <Compile Include="Identity\StringIdentity.cs" />
     <Compile Include="IEvent.cs" />
     <Compile Include="IHaveId.cs" />
+    <Compile Include="IHaveRoot.cs" />
     <Compile Include="IHaveState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueObject\IValueObject.cs" />

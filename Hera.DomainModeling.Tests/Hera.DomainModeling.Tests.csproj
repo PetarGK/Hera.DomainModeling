@@ -50,9 +50,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Model\Events\MarkAsPaid.cs" />
     <Compile Include="Model\Events\OrderCreated.cs" />
+    <Compile Include="Model\Events\OrderDelivered.cs" />
+    <Compile Include="Model\Events\OrderItemCreated.cs" />
+    <Compile Include="Model\Events\ProductAdded.cs" />
+    <Compile Include="Model\Events\ReadyForDelivery.cs" />
+    <Compile Include="Model\Events\UpdateProductPrice.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderItem.cs" />
+    <Compile Include="Model\OrderItemState.cs" />
     <Compile Include="Model\OrderState.cs" />
+    <Compile Include="OrderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

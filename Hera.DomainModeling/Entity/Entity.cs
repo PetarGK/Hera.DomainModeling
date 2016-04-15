@@ -31,6 +31,7 @@ namespace Hera.DomainModeling.Entity
         IAggregateRoot IHaveRoot<IAggregateRoot>.Root
         {
             get { return _root; }
+            set { }
         }
 
         #endregion
@@ -55,7 +56,7 @@ namespace Hera.DomainModeling.Entity
         {
             var entityEvent = new EntityEvent(_state.Id, @event);
             var ar = (dynamic)_root;
-            ar.Apply(entityEvent);
+            ar.Apply((dynamic)entityEvent);
         }
 
         #endregion

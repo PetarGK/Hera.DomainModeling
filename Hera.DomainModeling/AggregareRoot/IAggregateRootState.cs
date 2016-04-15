@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hera.DomainModeling.AggregareRoot
 {
-    public interface IAggregateRootState : IHaveId<IIdentity>
+    public interface IAggregateRootState : IHaveId<IIdentity>, IHaveRoot<IAggregateRoot>
     {
     }
 }

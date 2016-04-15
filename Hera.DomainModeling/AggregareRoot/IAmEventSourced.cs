@@ -10,7 +10,7 @@ namespace Hera.DomainModeling.AggregareRoot
 {
     public interface IAmEventSourced
     {
-        void ReplayEvents(List<IEvent> events, int currentRevision);
+        void ReplayEvents(IEnumerable<IEvent> events, int currentRevision);
         IEnumerable<IEvent> UncommittedEvents { get; }
         int Revision { get; }
         void RegisterEntity(IIdentity entityId, IEntity entity);

@@ -26,7 +26,9 @@ namespace Hera.DomainModeling.AggregareRoot
         {
             _revision = 0;
             _state = new TAggregateRootState();
+            _state.Root = this;
             _uncommittedEvents = new List<IEvent>();
+            _entities = new Dictionary<IIdentity, IEntity>();
         }
 
         #endregion
@@ -54,12 +56,12 @@ namespace Hera.DomainModeling.AggregareRoot
 
         #region Methods
 
-        protected void Apply(IEvent @event)
+        internal protected void Apply(IEvent @event)
         {
             Mutate(@event);
             _uncommittedEvents.Add(@event);
-        }
-        void IAmEventSourced.ReplayEvents(List<IEvent> events, int revision)
+         }
+        void IAmEventSourced.ReplayEvents(IEnumerable<IEvent> events, int revision)
         {
             _revision = revision;
             foreach (IEvent @event in events)
@@ -75,17 +77,17 @@ namespace Hera.DomainModeling.AggregareRoot
         {
             EntityEvent entityEvent = @event as EntityEvent;
             if (entityEvent != null)
-                MutateEntity(_entities[entityEvent.EntityId], @event);
+                MutateEntity(_entities[entityEvent.EntityId], entityEvent.Event);
             else
                 MutateAggregate(@event);
         }
         private void MutateAggregate(IEvent @event)
         {
-            ((dynamic)State).When(@event);
+            ((dynamic)State).When((dynamic)@event);
         }
         private void MutateEntity(IEntity entity, IEvent @event)
         {
-            ((dynamic)entity.State).When(@event);
+            ((dynamic)entity.State).When((dynamic)@event);
         }
 
         #endregion

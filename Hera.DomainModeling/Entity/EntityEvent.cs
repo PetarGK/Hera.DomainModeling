@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Hera.DomainModeling.Entity
 {
-    public class EntityEvent
+    public class EntityEvent : IEvent
     {
         private EntityEvent() { }
         public EntityEvent(IIdentity id, IEvent @event)
