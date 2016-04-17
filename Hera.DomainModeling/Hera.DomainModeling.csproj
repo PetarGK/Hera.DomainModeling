@@ -45,6 +45,7 @@
     <Compile Include="AggregareRoot\IAggregateRoot.cs" />
     <Compile Include="AggregareRoot\IAggregateRootState.cs" />
     <Compile Include="AggregareRoot\IAmEventSourced.cs" />
+    <Compile Include="DomainEvent\IDomainEventHandler.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\EntityEvent.cs" />
     <Compile Include="Entity\EntityState.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Identity\IIdentity.cs" />
     <Compile Include="Identity\IntIdentity.cs" />
     <Compile Include="Identity\StringIdentity.cs" />
-    <Compile Include="IEvent.cs" />
+    <Compile Include="DomainEvent\IDomainEvent.cs" />
     <Compile Include="IHaveId.cs" />
     <Compile Include="IHaveRoot.cs" />
     <Compile Include="IHaveState.cs" />

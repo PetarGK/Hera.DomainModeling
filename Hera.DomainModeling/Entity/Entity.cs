@@ -1,10 +1,6 @@
 ﻿using Hera.DomainModeling.AggregareRoot;
+using Hera.DomainModeling.DomainEvent;
 using Hera.DomainModeling.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hera.DomainModeling.Entity
 {
@@ -52,7 +48,7 @@ namespace Hera.DomainModeling.Entity
 
         #region Methods
 
-        protected void Apply(IEvent @event)
+        protected void Apply(IDomainEvent @event)
         {
             var entityEvent = new EntityEvent(_state.Id, @event);
             var ar = (dynamic)_root;

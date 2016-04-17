@@ -1,22 +1,18 @@
-﻿using Hera.DomainModeling.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hera.DomainModeling.DomainEvent;
+using Hera.DomainModeling.Identity;
 
 namespace Hera.DomainModeling.Entity
 {
-    public class EntityEvent : IEvent
+    public class EntityEvent : IDomainEvent
     {
         private EntityEvent() { }
-        public EntityEvent(IIdentity id, IEvent @event)
+        public EntityEvent(IIdentity id, IDomainEvent @event)
         {
             EntityId = id;
             Event = @event;
         }
 
         public IIdentity EntityId { get; private set; }
-        public IEvent Event { get; private set; }
+        public IDomainEvent Event { get; private set; }
     }
 }
