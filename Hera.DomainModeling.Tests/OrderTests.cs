@@ -1,5 +1,5 @@
 ﻿using Hera.DomainModeling.AggregareRoot;
-using Hera.DomainModeling.Tests.Model;
+using Hera.ExampleModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
