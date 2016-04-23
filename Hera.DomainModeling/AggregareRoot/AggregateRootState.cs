@@ -13,6 +13,5 @@ namespace Hera.DomainModeling.AggregareRoot
             get { return Id; }
             set { Id = (TId)value; }
         }
-
     }
 }
