@@ -32,5 +32,9 @@ namespace Hera.DomainModeling.Identity
         {
             return _id.GetHashCode();
         }
+        public override string ToString()
+        {
+            return _id.ToString();
+        }
     }
 }
