@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Hera.DomainModeling.Identity
 {
-    public abstract class GuidIdentity : IIdentity, IEqualityComparer<GuidIdentity>, IEquatable<GuidIdentity>
+    public abstract class GuidIdentity : IIdentity, IEqualityComparer<GuidIdentity>, IEquatable<GuidIdentity>, ISerializable
     {
         private Guid _id;
+
+        protected GuidIdentity() { }
 
         public GuidIdentity(Guid id)
         {
@@ -35,6 +38,15 @@ namespace Hera.DomainModeling.Identity
         public override string ToString()
         {
             return _id.ToString();
+        }
+
+        public GuidIdentity(SerializationInfo info, StreamingContext context)
+        {
+            _id = (Guid)info.GetValue("_id", typeof(Guid));
+        }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("_id", _id, typeof(Guid));
         }
     }
 }

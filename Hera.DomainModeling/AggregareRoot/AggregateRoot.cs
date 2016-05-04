@@ -2,10 +2,12 @@
 using Hera.DomainModeling.Entity;
 using Hera.DomainModeling.Identity;
 using Hera.DomainModeling.DomainEvent;
+using System.Runtime.Serialization;
+using System;
 
 namespace Hera.DomainModeling.AggregareRoot
 {
-    public abstract class AggregateRoot<TAggregateRootState> : IAggregateRoot
+    public abstract class AggregateRoot<TAggregateRootState> : ISerializable, IAggregateRoot
         where TAggregateRootState : IAggregateRootState, new()
     {
         #region Fields
@@ -26,6 +28,14 @@ namespace Hera.DomainModeling.AggregareRoot
             _state.Root = this;
             _uncommittedEvents = new List<IDomainEvent>();
             _entities = new Dictionary<IIdentity, IEntity>();
+        }
+        public AggregateRoot(SerializationInfo info, StreamingContext context)
+        {
+            _revision = (int)info.GetValue("Revision", typeof(int));
+            _state = (TAggregateRootState)info.GetValue("State", typeof(TAggregateRootState));
+            _state.Root = this;
+            _uncommittedEvents = new List<IDomainEvent>();
+            _entities = (Dictionary<IIdentity, IEntity>)info.GetValue("Entities", typeof(Dictionary<IIdentity, IEntity>));
         }
 
         #endregion
@@ -70,6 +80,7 @@ namespace Hera.DomainModeling.AggregareRoot
         {
             _entities.Add(entityId, entity);
         }
+
         private void Mutate(IDomainEvent @event)
         {
             EntityEvent entityEvent = @event as EntityEvent;
@@ -85,6 +96,13 @@ namespace Hera.DomainModeling.AggregareRoot
         private void MutateEntity(IEntity entity, IDomainEvent @event)
         {
             ((dynamic)entity.State).When((dynamic)@event);
+        }
+
+        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("State", State, typeof(TAggregateRootState));
+            info.AddValue("Revision", ((IAggregateRoot)this).Revision, typeof(int));
+            info.AddValue("Entities", _entities, typeof(Dictionary<IIdentity, IEntity>));
         }
 
         #endregion
